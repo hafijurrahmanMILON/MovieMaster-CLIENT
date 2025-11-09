@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Services = () => {
+const AllMovies = () => {
     return (
         <div>
-            Services
+           AllMovies 
         </div>
     );
 };
 
-export default Services;
+export default AllMovies;

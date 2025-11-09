@@ -2,11 +2,12 @@ import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layout/MainLayout";
 import Home from "../Pages/Home";
 import RouteError from "../Components/RouteError";
-import Services from "../Pages/Services";
 import MyProfile from "../Pages/MyProfile";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import PrivateRoute from "../Components/PrivateRoute";
+import AllMovies from "../Pages/AllMovies";
+import MyCollection from "../Pages/MyCollection";
 
 export const router = createBrowserRouter([
   {
@@ -19,8 +20,22 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "/services",
-        Component: Services,
+        path: "/all-movies",
+        Component: AllMovies,
+      },
+
+      {
+        path: "/my-collection",
+        element: <MyCollection></MyCollection>,
+      },
+
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "/register",
+        Component: Register,
       },
       {
         path: "/myProfile",
@@ -29,14 +44,6 @@ export const router = createBrowserRouter([
             <MyProfile></MyProfile>
           </PrivateRoute>
         ),
-      },
-      {
-        path: "/login",
-        Component: Login,
-      },
-      {
-        path: "/register",
-        Component: Register,
       },
     ],
   },

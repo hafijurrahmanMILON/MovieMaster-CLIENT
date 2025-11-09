@@ -1,8 +1,11 @@
 import React from "react";
+import MyLink from "./MyLink";
+import { Link } from "react-router";
+import logo from "../assets/logo.png";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar shadow-sm px-2 md:px-12 lg:px-22">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -27,51 +30,51 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a>Item 1</a>
+              <MyLink to="/">Home</MyLink>
             </li>
             <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
+              <MyLink to="/all-movies">All Movies</MyLink>
             </li>
             <li>
-              <a>Item 3</a>
+              <MyLink to="/my-collection">My Collection</MyLink>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <div className="flex items-center gap-1">
+          <img className="h-10 w-10  md:w-10" src={logo} alt="" />
+          <button className="font-primary text-xl font-lg">
+            Movie<span className="text-primary font-primary ">Master</span>
+          </button>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Item 1</a>
+            <MyLink to="/">Home</MyLink>
           </li>
           <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
+            <MyLink to="/all-movies">All Movies</MyLink>
           </li>
           <li>
-            <a>Item 3</a>
+            <MyLink to="/my-collection">My Collection</MyLink>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <div className="flex items-center gap-3">
+          <Link
+            to="/login"
+            className="text-sm md:text-md py-2 px-2 md:px-4  border-2 border-primary text-primary rounded-md font-semibold hover:bg-primary hover:text-white transition-all duration-300 hover:scale-105 transform"
+          >
+            Login
+          </Link>
+          <Link
+            to="/signup"
+            className="text-sm md:text-md py-2 px-2 md:px-3   bg-primary text-white rounded-md font-semibold hover:bg-primary/90 transition-all duration-300 hover:scale-105 transform shadow-lg hover:shadow-xl"
+          >
+            SignUp
+          </Link>
+        </div>
       </div>
     </div>
   );
