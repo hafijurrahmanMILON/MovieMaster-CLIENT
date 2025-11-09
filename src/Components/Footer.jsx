@@ -1,9 +1,9 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import { Link } from "react-router";
-import fb from '../assets/facebook.png'
-import yt from "../assets/youtube.png"
-import x from "../assets/twitter.png"
+import fb from "../assets/facebook.png";
+import yt from "../assets/youtube.png";
+import x from "../assets/twitter.png";
 
 const Footer = () => {
   return (
@@ -71,8 +71,9 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-      <p className="text-center text-primary pb-3">
-        © WarmPaws All Right Deserved 2025
+      <div className="divider px-10 md:px-64"></div>
+      <p className="text-center text-sm text-primary pb-3">
+        © MovieMaster All Right Deserved 2025
       </p>
     </div>
   );
