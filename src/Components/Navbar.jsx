@@ -87,6 +87,7 @@ const Navbar = () => {
               <div tabIndex={0} role="button" className="m-1">
                 <img
                   className="w-12 rounded-full border-primary border-2"
+                  referrerPolicy="no-referrer"
                   src={user?.photoURL}
                   alt="user"
                 />

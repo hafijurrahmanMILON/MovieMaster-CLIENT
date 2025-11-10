@@ -3,9 +3,11 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
+import useAxiosInstance from "../Hooks/useAxiosInstance";
 
 const Login = () => {
-  const { loginFunc, setUser, googleSignIn} = useContext(AuthContext);
+  const axiosInstance = useAxiosInstance();
+  const { loginFunc, setUser, googleSignIn } = useContext(AuthContext);
   const [show, setShow] = useState(false);
 
   // const location = useLocation();
@@ -20,7 +22,7 @@ const Login = () => {
       .then((result) => {
         toast.success("SignIn Successful");
         setUser(result.user);
-        navigate('/');
+        navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -49,9 +51,18 @@ const Login = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        toast.success("Google SignIn Successful");
+        const newUser = {
+          displayName: result.user.displayName,
+          email: result.user.email,
+          photoURL: result.user.photoURL,
+        };
         setUser(result.user);
-        navigate(from);
+        navigate("/");
+        axiosInstance.post(`/add-user`, newUser).then((res) => {
+          console.log("after insert:", res.data);
+
+          toast.success("Google SignIN Successful!");
+        });
       })
       .catch((error) => {
         console.log(error);

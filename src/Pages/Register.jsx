@@ -3,8 +3,10 @@ import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import useAxiosInstance from "../Hooks/useAxiosInstance";
 
 const Register = () => {
+  const axiosInstance = useAxiosInstance();
   const {
     setUser,
     createUserFunc,
@@ -23,6 +25,13 @@ const Register = () => {
     const photoURL = e.target.photoURL.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
+
+    const newUser = {
+      displayName,
+      photoURL,
+      email,
+    };
+
     const regExPass = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     if (!regExPass.test(password)) {
       setError(true);
@@ -30,10 +39,15 @@ const Register = () => {
     }
     createUserFunc(email, password)
       .then((res) => {
+        axiosInstance.post(`/add-user`, newUser).then((res) => {
+          console.log("after insert:", res.data);
+          if (res.data.insertedId) {
+            toast.success("Account created Successfully!");
+          }
+        });
         updateProfileFunc(displayName, photoURL)
           .then(() => {
             const user = res.user;
-            toast.success("Account created Successfully!");
             setUser({ ...user, displayName, photoURL });
             setError(false);
             navigate("/");
@@ -81,9 +95,19 @@ const Register = () => {
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        toast.success("Google SignIn Successful");
+        const newUser = {
+          displayName: result.user.displayName,
+          email: result.user.email,
+          photoURL: result.user.photoURL,
+        };
         setUser(result.user);
         navigate("/");
+        axiosInstance.post(`/add-user`, newUser).then((res) => {
+          console.log("after insert:", res.data);
+          if (res.data.insertedId) {
+            toast.success("Google SignIN Successful!");
+          }
+        });
       })
       .catch((error) => {
         console.log(error);

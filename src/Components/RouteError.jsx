@@ -3,7 +3,7 @@ import React from 'react';
 const RouteError = () => {
     return (
         <div>
-            RouteError
+            <h1>routeError</h1>
         </div>
     );
 };
