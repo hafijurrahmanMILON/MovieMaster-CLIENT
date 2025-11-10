@@ -47,7 +47,7 @@ const HeroSlider = () => {
             >
             
               <div className="text-white max-w-xl space-y-4 z-10">
-                <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold leading-tight ">
+                <h1 className="text-4xl md:text-4xl lg:text-5xl font-bold leading-tight font-primary text-primary">
                   {movie.title}
                 </h1>
                 <p className="text-base md:text-md opacity-80 leading-relaxed">
