@@ -7,7 +7,7 @@ import x from "../assets/twitter.png";
 
 const Footer = () => {
   return (
-    <div className="bg-secondary">
+    <div className="bg-neutral">
       <footer className="footer flex flex-col lg:flex-row  justify-around    p-10 py-16  md:px-42">
         <div>
           <div className="flex  items-center gap-2">
