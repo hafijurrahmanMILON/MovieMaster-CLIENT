@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import useAxiosInstance from "../Hooks/useAxiosInstance";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
+import Swal from "sweetalert2";
 
 const MovieDetails = () => {
   const axiosInstance = useAxiosInstance();
   const { id } = useParams();
   const [movie, setMovie] = useState({});
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   // console.log(movie, user);
 
   useEffect(() => {
@@ -15,6 +17,43 @@ const MovieDetails = () => {
       setMovie(res.data);
     });
   }, [axiosInstance, id]);
+
+  const handleDelete = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosInstance
+          .delete(`/movies/delete/${movie._id}`)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+            navigate("/all-movies");
+          })
+          .catch((err) => {
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: "Delete failed!",
+              text: "Something went wrong.",
+            });
+            console.log(err);
+          });
+      }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-base-100 py-8 px-4">
@@ -94,7 +133,10 @@ const MovieDetails = () => {
                   >
                     Edit
                   </Link>
-                  <button className="btn btn-outline hover:bg-error-focus text-white px-6 py-3 rounded-lg font-semibold transition-colors flex-1">
+                  <button
+                    onClick={handleDelete}
+                    className="btn btn-outline px-6 py-3 rounded-lg font-semibold flex-1"
+                  >
                     Delete
                   </button>
                 </div>
