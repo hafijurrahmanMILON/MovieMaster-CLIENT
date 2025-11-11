@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAxiosInstance from "../Hooks/useAxiosInstance";
 import RecentMovieCard from "./RecentMovieCard";
 import { FaArrowRight } from "react-icons/fa6";
+import { Link } from "react-router";
 
 const RecentlyAdded = () => {
   const axiosInstance = useAxiosInstance();
@@ -19,12 +20,15 @@ const RecentlyAdded = () => {
         <h1 className="font-secondary text-3xl mb-4">
           <span className="text-primary font-secondary">Recently </span>Added
         </h1>
-        <h1 className="flex items-center gap-1 hover:cursor-pointer group">
+        <Link
+          to="/all-movies"
+          className="flex items-center gap-1 hover:cursor-pointer group"
+        >
           View All
           <span className="transition-transform duration-300 group-hover:translate-x-2">
             <FaArrowRight />
           </span>
-        </h1>
+        </Link>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {latestMovies.map((movie) => (

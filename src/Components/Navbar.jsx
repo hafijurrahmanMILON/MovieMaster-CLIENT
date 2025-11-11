@@ -56,6 +56,9 @@ const Navbar = () => {
               <MyLink to="/all-movies">All Movies</MyLink>
             </li>
             <li>
+              <MyLink to="/add-movies">Add Movies</MyLink>
+            </li>
+            <li>
               <MyLink to="/my-collection">My Collection</MyLink>
             </li>
           </ul>
@@ -74,6 +77,9 @@ const Navbar = () => {
           </li>
           <li>
             <MyLink to="/all-movies">All Movies</MyLink>
+          </li>
+          <li>
+            <MyLink to="/add-movies">Add Movies</MyLink>
           </li>
           <li>
             <MyLink to="/my-collection">My Collection</MyLink>
