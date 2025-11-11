@@ -7,6 +7,7 @@ import Register from "../Pages/Register";
 import AllMovies from "../Pages/AllMovies";
 import MyCollection from "../Pages/MyCollection";
 import PrivateRoute from "../Components/PrivateRoute";
+import MovieDetails from "../Components/MovieDetails";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/all-movies",
         Component: AllMovies,
+      },
+      {
+        path: "/movie-details/:id",
+        Component: MovieDetails,
       },
 
       {

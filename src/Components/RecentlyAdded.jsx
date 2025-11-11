@@ -19,9 +19,9 @@ const RecentlyAdded = () => {
         <h1 className="font-secondary text-3xl mb-4">
           <span className="text-primary font-secondary">Recently </span>Added
         </h1>
-        <h1 className="flex items-center gap-1 hover:cursor-pointer">
-          View All{" "}
-          <span>
+        <h1 className="flex items-center gap-1 hover:cursor-pointer group">
+          View All
+          <span className="transition-transform duration-300 group-hover:translate-x-2">
             <FaArrowRight />
           </span>
         </h1>
