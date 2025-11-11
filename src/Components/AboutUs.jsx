@@ -4,7 +4,7 @@ import bannerIMG from "../assets/banner.jpg";
 
 const AboutUs = () => {
   return (
-    <section className="flex flex-col lg:flex-row items-center justify-center gap-2 py-16  px-6 md:px-4 bg-base-100 text-white">
+    <section className="flex flex-col lg:flex-row items-center justify-center gap-2 py-16  px-6 md:px-4">
       {/* Left Side - Image */}
       <motion.div
         className="md:w-[75%] w-full flex justify-center relative"
@@ -45,7 +45,7 @@ const AboutUs = () => {
 
         
           <motion.div
-            className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white to-transparent opacity-0 lg:w-[75%]"
+            className="absolute inset-0 rounded-3xl lg:w-[75%]"
             whileHover={{
               opacity: 0.1,
               x: ["0%", "100%"],
@@ -99,7 +99,7 @@ const AboutUs = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="text-gray-300 leading-relaxed"
+         
         >
           <motion.span
             initial={{ opacity: 0 }}
@@ -112,7 +112,7 @@ const AboutUs = () => {
           is your ultimate movie management platform.
         </motion.p>
 
-        <motion.ul className="space-y-1 text-gray-300">
+        <motion.ul className="space-y-1">
           {[
             "🎬 Discover trending and top-rated movies",
             "⭐ Create personalized collections",
@@ -131,7 +131,6 @@ const AboutUs = () => {
               }}
               whileHover={{
                 x: 10,
-                color: "#ffffff",
                 transition: { duration: 0.2 },
               }}
               className="flex items-center gap-2 cursor-default"
@@ -141,7 +140,7 @@ const AboutUs = () => {
           ))}
         </motion.ul>
 
-        <style jsx>{`
+        <style>{`
           @keyframes typing {
             from {
               width: 0;

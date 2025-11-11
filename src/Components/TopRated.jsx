@@ -6,7 +6,7 @@ import { FaArrowRight } from "react-icons/fa6";
 const TopRated = () => {
   const axiosInstance = useAxiosInstance();
   const [top, setTop] = useState([]);
-  console.log(top);
+  // console.log(top);
   useEffect(() => {
     axiosInstance.get(`/top-rated-movies`).then((res) => {
       setTop(res.data);
@@ -19,9 +19,12 @@ const TopRated = () => {
           Top
           <span className="text-primary font-secondary"> Rated </span>Movies
         </h1>
-          <h1 className="flex items-center gap-1 hover:cursor-pointer">
-            View All <span><FaArrowRight /></span>
-          </h1>
+          <h1 className="flex items-center gap-1 hover:cursor-pointer group">
+  View All 
+  <span className="transition-transform duration-300 group-hover:translate-x-2">
+    <FaArrowRight />
+  </span>
+</h1>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {top.map((movie) => (

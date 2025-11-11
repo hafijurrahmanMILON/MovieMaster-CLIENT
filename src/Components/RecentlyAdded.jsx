@@ -6,12 +6,11 @@ import { FaArrowRight } from "react-icons/fa6";
 const RecentlyAdded = () => {
   const axiosInstance = useAxiosInstance();
   const [latestMovies, setLatestMovies] = useState([]);
-  console.log(latestMovies);
+  // console.log(latestMovies);
 
   useEffect(() => {
     axiosInstance.get(`/latest-movies`).then((res) => {
       setLatestMovies(res.data);
-      console.log(latestMovies);
     });
   }, [axiosInstance]);
   return (
