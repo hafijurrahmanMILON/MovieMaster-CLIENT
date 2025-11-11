@@ -3,7 +3,7 @@ import React from 'react';
 const RecentMovieCard = ({ movie }) => {
     return (
         <div className="group cursor-pointer">
-            <div className="relative rounded-lg overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-300 w-46 h-64">
+            <div className="relative rounded-lg overflow-hidden shadow-md group-hover:shadow-lg transition-shadow duration-300 w-36 md:w-44 h-48 md:h-64">
                 <img 
                     src={movie.posterUrl} 
                     alt={movie.title}
@@ -18,7 +18,7 @@ const RecentMovieCard = ({ movie }) => {
 
             
             <div className="mt-2 w-40">
-                <h3 className="text-sm font-medium text-gray-900 dark:text-white truncate">
+                <h3 className="text-sm font-medium">
                     {movie.title}({movie.releaseYear})
                 </h3>
             </div>
