@@ -8,7 +8,7 @@ const MovieDetails = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState({});
   const { user } = useContext(AuthContext);
-  console.log(movie, user);
+  // console.log(movie, user);
 
   useEffect(() => {
     axiosInstance.get(`/movies/${id}`).then((res) => {
