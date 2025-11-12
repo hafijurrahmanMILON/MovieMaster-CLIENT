@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
@@ -17,7 +17,10 @@ const Register = () => {
   } = useContext(AuthContext);
   const [show, setShow] = useState(false);
 
+  const location = useLocation()
   const navigate = useNavigate();
+const from = location.state || '/'
+
 
   const handleCreateUser = (e) => {
     e.preventDefault();
@@ -50,7 +53,7 @@ const Register = () => {
             const user = res.user;
             setUser({ ...user, displayName, photoURL });
             setError(false);
-            navigate("/");
+            navigate(from);
           })
           .catch((error) => {
             console.log(error.message);
@@ -101,7 +104,7 @@ const Register = () => {
           photoURL: result.user.photoURL,
         };
         setUser(result.user);
-        navigate("/");
+        navigate(from);
         axiosInstance.post(`/add-user`, newUser).then((res) => {
           console.log("after insert:", res.data);
           if (res.data.insertedId) {

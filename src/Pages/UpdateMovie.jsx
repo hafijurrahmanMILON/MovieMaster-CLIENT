@@ -1,10 +1,11 @@
 import React from "react";
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigate } from "react-router";
 import useAxiosInstance from "../Hooks/useAxiosInstance";
 import Swal from "sweetalert2";
 
 const UpdateMovie = () => {
   const axiosInstance = useAxiosInstance();
+  const navigate = useNavigate();
   const movie = useLoaderData();
 
   const handleUpdateMovie = (e) => {
@@ -36,7 +37,7 @@ const UpdateMovie = () => {
       addedBy,
       created_at: movie.created_at,
     };
-    axiosInstance.put(`/movies/update/${movie._id}`,editedData).then((res) => {
+    axiosInstance.put(`/movies/update/${movie._id}`, editedData).then((res) => {
       console.log(res.data);
       if (res.data.modifiedCount) {
         Swal.fire({
@@ -47,6 +48,7 @@ const UpdateMovie = () => {
           timer: 1500,
         });
       }
+      navigate("/all-movies");
     });
   };
 

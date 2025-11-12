@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
 import useAxiosInstance from "../Hooks/useAxiosInstance";
@@ -10,9 +10,12 @@ const Login = () => {
   const { loginFunc, setUser, googleSignIn } = useContext(AuthContext);
   const [show, setShow] = useState(false);
 
-  // const location = useLocation();
-  // const from = location.state || "/";
+  const location = useLocation();
+  console.log(location);
+
+  const from = location.state || "/";
   const navigate = useNavigate();
+
 
   const handleLogIn = (e) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ const Login = () => {
       .then((result) => {
         toast.success("SignIn Successful");
         setUser(result.user);
-        navigate("/");
+        navigate(from);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -57,7 +60,7 @@ const Login = () => {
           photoURL: result.user.photoURL,
         };
         setUser(result.user);
-        navigate("/");
+        navigate(from);
         axiosInstance.post(`/add-user`, newUser).then((res) => {
           console.log("after insert:", res.data);
 
@@ -112,13 +115,13 @@ const Login = () => {
                   autoComplete="current-password"
                   required
                 />
-                <button
-                  type="button"
+                <span
+                  
                   onClick={() => setShow(!show)}
                   className="hover:cursor-pointer absolute right-3 top-3  z-10"
                 >
                   {show ? <IoEyeOutline /> : <IoEyeOffOutline />}
-                </button>
+                </span>
               </div>
             </div>
 

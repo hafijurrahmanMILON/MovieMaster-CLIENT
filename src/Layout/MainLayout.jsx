@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Navbar from '../Components/Navbar';
 import { Outlet } from 'react-router';
 import Footer from '../Components/Footer';
+import { AuthContext } from '../Context/AuthContext';
+import Loading from '../Components/Loading';
 
 const MainLayout = () => {
+   const { loading } = useContext(AuthContext);
+
+  if (loading) {
+    return <Loading></Loading>
+  }
     return (
     <div className="flex flex-col min-h-screen">
       <header>

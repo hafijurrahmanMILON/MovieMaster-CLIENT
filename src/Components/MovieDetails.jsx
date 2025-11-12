@@ -46,7 +46,7 @@ const MovieDetails = () => {
             Swal.fire({
               position: "center",
               icon: "error",
-              title: "Delete failed!",
+              title: "failed!",
               text: "Something went wrong.",
             });
             console.log(err);

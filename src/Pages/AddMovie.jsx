@@ -3,10 +3,12 @@ import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import useAxiosInstance from "../Hooks/useAxiosInstance";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const AddMovie = () => {
   const { user } = useContext(AuthContext);
   const axiosInstance = useAxiosInstance();
+  const navigate = useNavigate();
 
   const handleAddMovies = (e) => {
     e.preventDefault();
@@ -44,11 +46,12 @@ const AddMovie = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: "Movies has been added",
+          title: "Movie has been added",
           showConfirmButton: false,
           timer: 1500,
         });
       }
+       navigate("/all-movies");
     });
   };
 
@@ -137,7 +140,6 @@ const AddMovie = () => {
                   required
                   name="rating"
                   type="number"
-                  step="0.1"
                   placeholder="Rating"
                   className="p-3 bg-base-100 border border-neutral rounded"
                 />
