@@ -15,11 +15,12 @@ import {
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
+  const [genreMovies,setGenreMovies] = useState([])
   const [user, setUser] = useState(null);
   console.log(user);
-  // const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [apiLoading,setApiLoading]  = useState(false)
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
 
   useEffect(() => {
@@ -96,6 +97,10 @@ const AuthProvider = ({ children }) => {
     signOutFunc,
     updateProfileFunc,
     resetPasswordFunc,
+    apiLoading,
+    setApiLoading,
+    genreMovies,
+    setGenreMovies,
   };
 
   return <AuthContext value={authData}>{children}</AuthContext>;

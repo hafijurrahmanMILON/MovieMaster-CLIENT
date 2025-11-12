@@ -3,21 +3,25 @@ import useAxiosInstance from "../Hooks/useAxiosInstance";
 import { AuthContext } from "../Context/AuthContext";
 import Swal from "sweetalert2";
 import { Link } from "react-router";
+import Loading from "../Components/Loading";
 
 const MyCollection = () => {
-  const { user, } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const axiosInstance = useAxiosInstance();
   const [collection, setCollection] = useState([]);
   const [refetch, setRefetch] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axiosInstance
       .get(`/movies/my-collection?email=${user?.email}`)
       .then((res) => {
         console.log(res.data);
         setCollection(res.data);
-      });
-  }, [axiosInstance, user, refetch]);
+      })
+      .finally(() => setLoading(false));
+  }, [axiosInstance, user?.email, refetch]);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -30,6 +34,7 @@ const MyCollection = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        setLoading(true);
         axiosInstance
           .delete(`/movies/delete/${id}`)
           .then((res) => {
@@ -51,11 +56,16 @@ const MyCollection = () => {
               text: "Something went wrong.",
             });
             console.log(err);
-          });
+          })
+          .finally(() => setLoading(false));
       }
     });
   };
-    
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <div className="min-h-screen py-8 px-4">
       <div className="w-10/12 mx-auto">
@@ -66,7 +76,6 @@ const MyCollection = () => {
           <p className=" mt-2">Your personal movie library</p>
         </div>
 
-        {/* Movies Grid */}
         {collection.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
             {collection.map((movie) => (

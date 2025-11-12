@@ -4,20 +4,22 @@ import { AuthContext } from "../Context/AuthContext";
 import useAxiosInstance from "../Hooks/useAxiosInstance";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import Loading from "../Components/Loading";
 
 const AddMovie = () => {
-  const { user } = useContext(AuthContext);
+  const { user,apiLoading,setApiLoading } = useContext(AuthContext);
   const axiosInstance = useAxiosInstance();
   const navigate = useNavigate();
 
   const handleAddMovies = (e) => {
+    setApiLoading(true)
     e.preventDefault();
     const title = e.target.title.value;
     const genre = e.target.genre.value;
-    const releaseYear = Number(e.target.releaseYear.value)
+    const releaseYear = Number(e.target.releaseYear.value);
     const director = e.target.director.value;
     const cast = e.target.cast.value;
-    const rating = Number(e.target.rating.value)
+    const rating = Number(e.target.rating.value);
     const duration = Number(e.target.duration.value);
     const plotSummary = e.target.plotSummary.value;
     const posterUrl = e.target.posterUrl.value;
@@ -40,20 +42,34 @@ const AddMovie = () => {
       created_at: new Date(),
     };
     console.log(newMovie);
-    axiosInstance.post(`/movies/add`, newMovie).then((res) => {
-      console.log(res.data);
-      if (res.data.insertedId) {
+    axiosInstance.post(`/movies/add`, newMovie)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Movie has been added",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        navigate("/all-movies");
+      })
+      .catch((err) => {
         Swal.fire({
           position: "center",
-          icon: "success",
-          title: "Movie has been added",
-          showConfirmButton: false,
-          timer: 1500,
+          icon: "error",
+          title: "failed!",
+          text: "Something went wrong.",
         });
-      }
-       navigate("/all-movies");
-    });
+        console.log(err);
+      }).finally(() => setApiLoading(false))
   };
+
+  if (apiLoading) {
+    return <Loading></Loading>
+  }
 
   return (
     <div className="min-h-screen bg-base-100 py-8">

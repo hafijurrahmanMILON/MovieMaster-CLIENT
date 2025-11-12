@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router";
 import useAxiosInstance from "../Hooks/useAxiosInstance";
 import Swal from "sweetalert2";
+import RouteError from "../Components/RouteError";
+import { AuthContext } from "../Context/AuthContext";
+import Loading from "../Components/Loading";
 
 const UpdateMovie = () => {
   const axiosInstance = useAxiosInstance();
   const navigate = useNavigate();
   const movie = useLoaderData();
+  const { apiLoading, setApiLoading } = useContext(AuthContext);
 
   const handleUpdateMovie = (e) => {
+    setApiLoading(true);
     e.preventDefault();
     const title = e.target.title.value;
     const genre = e.target.genre.value;
@@ -37,20 +42,38 @@ const UpdateMovie = () => {
       addedBy,
       created_at: movie.created_at,
     };
-    axiosInstance.put(`/movies/update/${movie._id}`, editedData).then((res) => {
-      console.log(res.data);
-      if (res.data.modifiedCount) {
+    axiosInstance
+      .put(`/movies/update/${movie._id}`, editedData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.modifiedCount) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Movie has been updated!",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        navigate("/all-movies");
+      })
+      .catch((err) => {
         Swal.fire({
           position: "center",
-          icon: "success",
-          title: "Movie has been Updated!",
+          icon: "error",
+          title: "Update failed!",
+          text: "Something went wrong.",
           showConfirmButton: false,
           timer: 1500,
         });
-      }
-      navigate("/all-movies");
-    });
+        console.log(err);
+      })
+      .finally(() => setApiLoading(false));
   };
+
+  if (apiLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="min-h-screen bg-base-100 py-8">

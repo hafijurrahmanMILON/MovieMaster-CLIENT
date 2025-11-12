@@ -10,12 +10,13 @@ import PrivateRoute from "../Components/PrivateRoute";
 import MovieDetails from "../Components/MovieDetails";
 import AddMovie from "../Pages/AddMovie";
 import UpdateMovie from "../Pages/UpdateMovie";
+import MoviesByGenre from "../Components/MoviesByGenre";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
-    errorElement: RouteError,
+    errorElement: <RouteError></RouteError>,
     children: [
       {
         index: true,
@@ -38,7 +39,7 @@ export const router = createBrowserRouter([
             <UpdateMovie></UpdateMovie>
           </PrivateRoute>
         ),
-        loader:({params}) => fetch(`http://localhost:3000/movies/${params.id}`)
+        loader:({params}) => fetch(`https://movie-master-server-seven.vercel.app/${params.id}`)
       },
       {
         path: "/my-collection",
@@ -64,6 +65,10 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         Component: Register,
+      },
+      {
+        path: "/movies-by-genre",
+        Component: MoviesByGenre,
       },
     ],
   },

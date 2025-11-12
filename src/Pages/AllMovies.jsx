@@ -1,17 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useAxiosInstance from "../Hooks/useAxiosInstance";
 import AllMoviesCard from "../Components/AllMoviesCard";
+import { AuthContext } from "../Context/AuthContext";
+import Loading from "../Components/Loading";
 
 const AllMovies = () => {
   const axiosInstance = useAxiosInstance();
   const [allMovies, setAllMovies] = useState([]);
+  const { apiLoading, setApiLoading } = useContext(AuthContext);
 
   useEffect(() => {
-    axiosInstance.get(`/movies`).then((res) => {
-    //   console.log(res.data);
-      setAllMovies(res.data);
-    });
+    setApiLoading(true);
+    axiosInstance
+      .get(`/movies`)
+      .then((res) => {
+        //   console.log(res.data);
+        setAllMovies(res.data);
+      })
+      .finally(() => setApiLoading(false));
   }, [axiosInstance]);
+
+  if (apiLoading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <div className="w-9/12 mx-auto p-3 md:p-0">
       <div>

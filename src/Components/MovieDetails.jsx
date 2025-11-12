@@ -3,6 +3,8 @@ import useAxiosInstance from "../Hooks/useAxiosInstance";
 import { Link, useNavigate, useParams } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import Swal from "sweetalert2";
+import Loading from "./Loading";
+import RouteError from "./RouteError";
 
 const MovieDetails = () => {
   const axiosInstance = useAxiosInstance();
@@ -10,12 +12,22 @@ const MovieDetails = () => {
   const [movie, setMovie] = useState({});
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   // console.log(movie, user);
 
   useEffect(() => {
-    axiosInstance.get(`/movies/${id}`).then((res) => {
-      setMovie(res.data);
-    });
+    setLoading(true);
+    axiosInstance
+      .get(`/movies/${id}`)
+      .then((res) => {
+        setMovie(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(true);
+      })
+      .finally(() => setLoading(false));
   }, [axiosInstance, id]);
 
   const handleDelete = () => {
@@ -29,6 +41,7 @@ const MovieDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        setLoading(true);
         axiosInstance
           .delete(`/movies/delete/${movie._id}`)
           .then((res) => {
@@ -50,10 +63,19 @@ const MovieDetails = () => {
               text: "Something went wrong.",
             });
             console.log(err);
-          });
+          })
+          .finally(() => setLoading(false));
       }
     });
   };
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
+
+  if (error) {
+    return <RouteError></RouteError>;
+  }
 
   return (
     <div className="min-h-screen bg-base-100 py-8 px-4">

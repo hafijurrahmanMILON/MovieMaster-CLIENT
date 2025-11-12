@@ -108,7 +108,7 @@ const from = location.state || '/'
         axiosInstance.post(`/add-user`, newUser).then((res) => {
           console.log("after insert:", res.data);
           if (res.data.insertedId) {
-            toast.success("Google SignIN Successful!");
+            toast.success("Google SignIn Successful!");
           }
         });
       })
