@@ -6,7 +6,7 @@ import { Link } from "react-router";
 const Genre = () => {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const axiosInstance = useAxiosInstance();
-  const { genreMovies, setGenreMovies} = useContext(AuthContext);
+  const { setGenreMovies} = useContext(AuthContext);
   // console.log("genreMOvies", genreMovies);
   const genres = [
     "Action",

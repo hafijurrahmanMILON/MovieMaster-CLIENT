@@ -5,6 +5,7 @@ import useAxiosInstance from "../Hooks/useAxiosInstance";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 import Loading from "../Components/Loading";
+import toast from "react-hot-toast";
 
 const AddMovie = () => {
   const { user, apiLoading, setApiLoading } = useContext(AuthContext);
@@ -58,13 +59,15 @@ const AddMovie = () => {
         navigate("/all-movies");
       })
       .catch((err) => {
-        Swal.fire({
+        if (err.response?.status === 400) {
+         Swal.fire({
           position: "center",
           icon: "error",
           title: "failed!",
-          text: "Something went wrong.",
+          text: 'Movie already exist!',
         });
         console.log(err);
+        }
       })
       .finally(() => setApiLoading(false));
   };

@@ -40,7 +40,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/movies/${params.id}`),
+          fetch(`https://movie-master-server-seven.vercel.app/movies/${params.id}`),
       },
       {
         path: "/my-collection",

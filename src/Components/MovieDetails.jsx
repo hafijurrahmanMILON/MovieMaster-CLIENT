@@ -28,7 +28,7 @@ const MovieDetails = () => {
         setMovie(res.data);
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
         setError(true);
       })
       .finally(() => setLoading(false));
@@ -70,7 +70,7 @@ const MovieDetails = () => {
         if (err.response?.status === 400) {
           toast.error(err.response.data.message);
         }
-        // console.log(err);
+        console.log(err);
       });
   };
 
