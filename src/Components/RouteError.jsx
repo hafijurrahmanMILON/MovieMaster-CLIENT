@@ -21,7 +21,7 @@ const RouteError = () => {
         to="/"
         className="btn border-none btn-primary text-white font-semibold px-8 py-3 rounded-full  hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
       >
-        Go Back Home
+       Back to Home
       </Link>
     </div>
   );

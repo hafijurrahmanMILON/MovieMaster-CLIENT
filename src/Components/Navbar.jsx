@@ -8,7 +8,10 @@ import {
   IoLogOutOutline,
   IoPersonAddOutline,
 } from "react-icons/io5";
+import { BsCollectionPlay } from "react-icons/bs";
+import { AiOutlineDatabase } from "react-icons/ai";
 import toast from "react-hot-toast";
+import userImg from "../assets/user.png"
 
 const Navbar = () => {
   const { theme, handleTheme, user, setUser, signOutFunc } =
@@ -25,7 +28,7 @@ const Navbar = () => {
       });
   };
   return (
-    <div className="navbar  shadow-sm px-2 md:px-12 lg:px-22">
+    <div className="navbar  shadow-sm px-2 md:px-12 lg:px-28">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -58,9 +61,6 @@ const Navbar = () => {
             <li>
               <MyLink to="/add-movies">Add Movies</MyLink>
             </li>
-            <li>
-              <MyLink to="/my-collection">My Collection</MyLink>
-            </li>
           </ul>
         </div>
         <div className="flex items-center gap-1">
@@ -81,69 +81,95 @@ const Navbar = () => {
           <li>
             <MyLink to="/add-movies">Add Movies</MyLink>
           </li>
-          <li>
-            <MyLink to="/my-collection">My Collection</MyLink>
-          </li>
         </ul>
       </div>
       <div className="navbar-end">
         {user ? (
           <div className="flex justify-center items-center gap-3 text-center">
-            <div className="dropdown dropdown-center text-center z-50">
-              <div tabIndex={0} role="button" className="m-1">
+            <div className="dropdown dropdown-end lg:dropdown-center text-center z-50">
+              <div
+                tabIndex={0}
+                role="button"
+                className="m-1 transition-transform hover:scale-110"
+              >
                 <img
-                  className="w-12 rounded-full border-primary border-2"
+                  className="w-12 h-12 rounded-full border-2 border-primary object-cover shadow-lg"
                   referrerPolicy="no-referrer"
-                  src={user?.photoURL}
+                  src={user?.photoURL || userImg}
                   alt="user"
                 />
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu bg-base-100 rounded-box z-60 w-52 p-2 shadow-sm space-y-3"
+                className="dropdown-content menu bg-base-100/80 backdrop-blur-lg rounded-2xl z-60 w-72 p-4 shadow-2xl border border-white/20 space-y-3"
               >
-                <h1>{user.displayName}</h1>
-                <h1>{user.email}</h1>
-                <label className="flex justify-center items-center cursor-pointer gap-2 text-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="5" />
-                    <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-                  </svg>
-                  <input
-                    checked={theme === "dark"}
-                    onChange={handleTheme}
-                    type="checkbox"
-                    className="toggle theme-controller"
-                  />
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                  </svg>
-                </label>
+                <div className="text-center pb-2 border-b border-gray-400">
+                  <h1 className="text-primary font-semibold text-xl truncate">
+                    {user.displayName}
+                  </h1>
+                  <h1 className="text-sm truncate">
+                    {user.email}
+                  </h1>
+                </div>
+
+                <div className="flex justify-between items-center p-3 bg-base-300 rounded-xl">
+                  <span className="text-sm">Theme</span>
+                  <label className="flex items-center cursor-pointer gap-2">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <circle cx="12" cy="12" r="5" />
+                      <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+                    </svg>
+                    <input
+                      checked={theme === "dark"}
+                      onChange={handleTheme}
+                      type="checkbox"
+                      className="toggle toggle-sm theme-controller"
+                    />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                  </label>
+                </div>
+                <Link
+                  to="/my-collection"
+                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-primary hover:text-white font-medium"
+                >
+                  <AiOutlineDatabase className="text-lg" />
+                  My Collection
+                </Link>
+
+                <Link
+                  to="/my-watchList"
+                  className="flex items-center gap-3 p-3 rounded-xl hover:bg-primary hover:text-white font-medium"
+                >
+                  <BsCollectionPlay className="text-lg" />
+                  My WatchList
+                </Link>
                 <button
                   onClick={handleSignOut}
-                  className="btn btn-primary w-full flex justify-center items-center"
+                  className="flex btn btn-primary items-center gap-3 p-3 rounded-xl font-medium justify-center mt-2"
                 >
-                  <IoLogOutOutline />
+                  <IoLogOutOutline className="text-lg" />
                   Log out
                 </button>
               </ul>

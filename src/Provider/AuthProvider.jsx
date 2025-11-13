@@ -17,7 +17,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [genreMovies,setGenreMovies] = useState([])
   const [user, setUser] = useState(null);
-  console.log(user);
+  // console.log(user);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [apiLoading,setApiLoading]  = useState(false)

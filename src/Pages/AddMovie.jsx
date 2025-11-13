@@ -7,12 +7,12 @@ import { useNavigate } from "react-router";
 import Loading from "../Components/Loading";
 
 const AddMovie = () => {
-  const { user,apiLoading,setApiLoading } = useContext(AuthContext);
+  const { user, apiLoading, setApiLoading } = useContext(AuthContext);
   const axiosInstance = useAxiosInstance();
   const navigate = useNavigate();
 
   const handleAddMovies = (e) => {
-    setApiLoading(true)
+    setApiLoading(true);
     e.preventDefault();
     const title = e.target.title.value;
     const genre = e.target.genre.value;
@@ -42,7 +42,8 @@ const AddMovie = () => {
       created_at: new Date(),
     };
     console.log(newMovie);
-    axiosInstance.post(`/movies/add`, newMovie)
+    axiosInstance
+      .post(`/movies/add`, newMovie)
       .then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {
@@ -64,19 +65,20 @@ const AddMovie = () => {
           text: "Something went wrong.",
         });
         console.log(err);
-      }).finally(() => setApiLoading(false))
+      })
+      .finally(() => setApiLoading(false));
   };
 
   if (apiLoading) {
-    return <Loading></Loading>
+    return <Loading></Loading>;
   }
 
   return (
     <div className="min-h-screen bg-base-100 py-8">
       <div className="max-w-2xl mx-auto px-4">
         <div className="text-center mb-8">
-          <h1 className="text-4xl  font-primary">
-            Add<span className="font-primary text-primary"> New </span>Movie
+          <h1 className="text-4xl font-bold font-secondary">
+            Add<span className="font-secondary text-primary"> New </span>Movie
           </h1>
           <p className="mt-2">Fill in the details below</p>
         </div>
@@ -153,6 +155,9 @@ const AddMovie = () => {
               <div className="flex flex-col">
                 <label className="label">Rating</label>
                 <input
+                  min="0"
+                  max="10"
+                  step="0.1"
                   required
                   name="rating"
                   type="number"

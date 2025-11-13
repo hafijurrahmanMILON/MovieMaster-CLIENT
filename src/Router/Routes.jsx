@@ -11,6 +11,7 @@ import MovieDetails from "../Components/MovieDetails";
 import AddMovie from "../Pages/AddMovie";
 import UpdateMovie from "../Pages/UpdateMovie";
 import MoviesByGenre from "../Components/MoviesByGenre";
+import MyWatchList from "../Pages/MyWatchList";
 
 export const router = createBrowserRouter([
   {
@@ -31,7 +32,6 @@ export const router = createBrowserRouter([
         Component: MovieDetails,
       },
 
-      
       {
         path: "/movies/update/:id",
         element: (
@@ -39,13 +39,22 @@ export const router = createBrowserRouter([
             <UpdateMovie></UpdateMovie>
           </PrivateRoute>
         ),
-        loader:({params}) => fetch(`https://movie-master-server-seven.vercel.app/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/movies/${params.id}`),
       },
       {
         path: "/my-collection",
         element: (
           <PrivateRoute>
             <MyCollection></MyCollection>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-watchList",
+        element: (
+          <PrivateRoute>
+            <MyWatchList></MyWatchList>
           </PrivateRoute>
         ),
       },

@@ -10,6 +10,7 @@ const UpdateMovie = () => {
   const axiosInstance = useAxiosInstance();
   const navigate = useNavigate();
   const movie = useLoaderData();
+  // console.log(movie)
   const { apiLoading, setApiLoading } = useContext(AuthContext);
 
   const handleUpdateMovie = (e) => {
@@ -55,7 +56,7 @@ const UpdateMovie = () => {
             timer: 1500,
           });
         }
-        navigate("/all-movies");
+        navigate(`/movie-details/${movie?._id}`);
       })
       .catch((err) => {
         Swal.fire({

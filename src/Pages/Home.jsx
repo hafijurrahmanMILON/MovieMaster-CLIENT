@@ -20,7 +20,7 @@ const Home = () => {
         <TopRated></TopRated>
       </div>
       <Statistics></Statistics>
-       <div className="w-7/12 mx-auto my-12">
+       <div className="w-full px-4 md:p-0 md:w-7/12 mx-auto my-12">
         <Genre></Genre>
       </div>
     </div>

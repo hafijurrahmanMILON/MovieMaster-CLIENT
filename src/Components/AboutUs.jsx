@@ -5,7 +5,6 @@ import bannerIMG from "../assets/banner.jpg";
 const AboutUs = () => {
   return (
     <section className="flex flex-col lg:flex-row items-center justify-center gap-2 py-16  px-6 md:px-4">
-      {/* Left Side - Image */}
       <motion.div
         className="md:w-[75%] w-full flex justify-center relative"
         initial={{ opacity: 0 }}
@@ -43,7 +42,6 @@ const AboutUs = () => {
             }}
           />
 
-        
           <motion.div
             className="absolute inset-0 rounded-3xl lg:w-[75%]"
             whileHover={{
@@ -60,7 +58,7 @@ const AboutUs = () => {
           />
         </motion.div>
       </motion.div>
-      {/* Right Side - Text */}
+
       <motion.div
         className="md:w-[60%] w-full space-y-5"
         initial="hidden"
@@ -85,21 +83,21 @@ const AboutUs = () => {
               },
             },
           }}
-          className="text-3xl md:text-3xl lg:text-5xl font-bold text-primary overflow-hidden"
+          className="text-3xl mt-4 lg:mt-0 md:text-4xl lg:text-5xl font-bold overflow-hidden font-secondary"
           style={{
             width: "0px",
             animation:
               "typing 3.5s steps(40, end) forwards, blink-caret 0.75s step-end infinite",
           }}
         >
-          About MovieMaster Pro
+          About{" "}
+          <span className="font-secondary text-primary">MovieMaster Pro</span>
         </motion.h2>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-         
         >
           <motion.span
             initial={{ opacity: 0 }}
@@ -109,15 +107,21 @@ const AboutUs = () => {
           >
             MovieMaster Pro
           </motion.span>{" "}
-          is your ultimate movie management platform.
+          is your ultimate movie management platform, designed to make
+          discovering, organizing, and enjoying films effortless. Browse
+          thousands of titles, filter by genre or rating, and build your own
+          personalized watchlist.
         </motion.p>
 
         <motion.ul className="space-y-1">
           {[
             "🎬 Discover trending and top-rated movies",
-            "⭐ Create personalized collections",
-            "📊 Track statistics and user activity",
             "🕹️ Smooth animations and dark mode interface",
+            "⭐ Save favorites to your personal watchlist",
+            "📺 Stream trailers and get detailed movie info",
+            "👥 See what other users are watching and reviewing",
+            "📊 Track your viewing history and recommendations",
+            "🌙 Enjoy a modern interface with dark mode support",
           ].map((item, index) => (
             <motion.li
               key={index}

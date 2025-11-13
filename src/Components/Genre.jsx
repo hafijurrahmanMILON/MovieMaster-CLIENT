@@ -7,7 +7,7 @@ const Genre = () => {
   const [selectedGenres, setSelectedGenres] = useState([]);
   const axiosInstance = useAxiosInstance();
   const { genreMovies, setGenreMovies} = useContext(AuthContext);
-  console.log("genreMOvies", genreMovies);
+  // console.log("genreMOvies", genreMovies);
   const genres = [
     "Action",
     "Drama",
@@ -42,23 +42,23 @@ const Genre = () => {
       .get(`/movies-by-genre?genres=${selectedGenres}`)
       .then((res) => {
         setGenreMovies(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
   };
   return (
-    <section className="py-16 bg-base-100 px-6">
-      <div className="max-w-6xl mx-auto">
+    <section className="py-16 bg-base-100 px-2">
+      <div className=" mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-            Search by Genre
+          <h2 className="text-3xl md:text-5xl font-bold font-secondary mb-4">
+            Browse by <span className="font-secondary text-primary">Genre</span>
           </h2>
-          <p className="text-text text-opacity-70 max-w-2xl mx-auto">
+          <p className="max-w-2xl mx-auto">
             Explore our collection organized by genre. Find exactly what you're
             in the mood for.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-3  md:grid-cols-4 lg:grid-cols-6 gap-3">
           {genres.map((genre) => (
             <button
               key={genre}
@@ -66,7 +66,7 @@ const Genre = () => {
               className={`border rounded-lg py-3 px-4 text-sm font-medium text-center transition-all duration-200 cursor-pointer hover:scale-105 hover:shadow-md ${
                 selectedGenres.includes(genre)
                   ? "bg-primary text-white border-primary"
-                  : "bg-base-100 border-gray-600 text-text"
+                  : "bg-base-100 border-gray-600 "
               }`}
             >
               {genre}
@@ -78,10 +78,10 @@ const Genre = () => {
           onClick={handleGenreSearch}
           className="btn btn-primary w-full mt-5"
         >
-          Search
+          Browse
         </Link>
         <div className="text-center mt-12">
-          <p className="text-text text-opacity-60 text-sm">
+          <p className="text-sm">
             Can't find what you're looking for?{" "}
             <button className="text-primary hover:underline font-medium">
               Suggest a genre

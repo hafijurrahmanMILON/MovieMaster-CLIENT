@@ -11,7 +11,7 @@ const Login = () => {
   const [show, setShow] = useState(false);
 
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
 
   const from = location.state || "/";
   const navigate = useNavigate();
