@@ -5,7 +5,6 @@ import useAxiosInstance from "../Hooks/useAxiosInstance";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
 import Loading from "../Components/Loading";
-import toast from "react-hot-toast";
 
 const AddMovie = () => {
   const { user, apiLoading, setApiLoading } = useContext(AuthContext);
@@ -62,7 +61,7 @@ const AddMovie = () => {
         if (err.response?.status === 400) {
          Swal.fire({
           position: "center",
-          icon: "error",
+          icon: "warning",
           title: "failed!",
           text: 'Movie already exist!',
         });

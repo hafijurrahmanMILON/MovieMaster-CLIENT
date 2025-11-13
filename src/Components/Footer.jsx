@@ -13,7 +13,7 @@ const Footer = () => {
           <div className="flex  items-center gap-2">
             <img className="h-10 w-10" src={logo} alt="" />
             <p className="font-primary text-3xl font-lg">
-              Movie<span className="text-primary font-primary ">Master</span>
+              Movie<span className="text-primary font-primary ">Master</span>Pro
             </p>
           </div>
           <div className="flex items-center gap-4">
@@ -73,7 +73,7 @@ const Footer = () => {
       </footer>
       <div className="divider px-10 md:px-64"></div>
       <p className="text-center text-sm text-primary pb-3">
-        © MovieMaster All Right Deserved 2025
+        © MovieMaster Pro All Right Deserved 2025
       </p>
     </div>
   );

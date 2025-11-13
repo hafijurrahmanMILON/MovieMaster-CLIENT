@@ -38,7 +38,7 @@ const MyWatchList = () => {
             console.log(res.data);
             if (res.data.deletedCount) {
               Swal.fire({
-                title: "Deleted!",
+                title: "Removed!",
                 text: "Your file has been Removed.",
                 icon: "success",
               });

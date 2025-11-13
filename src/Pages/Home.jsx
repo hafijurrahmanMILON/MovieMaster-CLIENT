@@ -16,7 +16,7 @@ const Home = () => {
       <div className="w-9/12 mx-auto mt-12">
         <AboutUs></AboutUs>
       </div>
-      <div className="w-9/12 mx-auto my-12">
+      <div className="w-9/12 mx-auto my-22">
         <TopRated></TopRated>
       </div>
       <Statistics></Statistics>

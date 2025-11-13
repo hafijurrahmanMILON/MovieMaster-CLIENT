@@ -66,6 +66,7 @@ const Statistics = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
+        className="text-white"
       >
         From thousands of movies to a growing community of users, here’s what
         makes MovieMaster Pro thrive.

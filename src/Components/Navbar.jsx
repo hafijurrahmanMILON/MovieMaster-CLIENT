@@ -11,7 +11,10 @@ import {
 import { BsCollectionPlay } from "react-icons/bs";
 import { AiOutlineDatabase } from "react-icons/ai";
 import toast from "react-hot-toast";
-import userImg from "../assets/user.png"
+import userImg from "../assets/user.png";
+import { GoHome } from "react-icons/go";
+import { BiMoviePlay } from "react-icons/bi";
+import { AiOutlineVideoCameraAdd } from "react-icons/ai";
 
 const Navbar = () => {
   const { theme, handleTheme, user, setUser, signOutFunc } =
@@ -53,33 +56,51 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <MyLink to="/">Home</MyLink>
+              <MyLink to="/">
+                <GoHome className="text-xl" />
+                Home
+              </MyLink>
             </li>
             <li>
-              <MyLink to="/all-movies">All Movies</MyLink>
+              <MyLink to="/all-movies">
+                <BiMoviePlay className="text-xl" />
+                All Movies
+              </MyLink>
             </li>
             <li>
-              <MyLink to="/add-movies">Add Movies</MyLink>
+              <MyLink to="/add-movies">
+                <AiOutlineVideoCameraAdd className="text-xl" />
+                Add Movies
+              </MyLink>
             </li>
           </ul>
         </div>
         <div className="flex items-center gap-1">
           <img className="w-7  md:w-10" src={logo} alt="" />
           <button className="font-primary text-lg md:text-2xl">
-            Movie<span className="text-primary font-primary ">Master</span>
+            Movie<span className="text-primary font-primary ">Master</span>Pro
           </button>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <MyLink to="/">Home</MyLink>
+            <MyLink to="/">
+              <GoHome className="text-xl" />
+              Home
+            </MyLink>
           </li>
           <li>
-            <MyLink to="/all-movies">All Movies</MyLink>
+            <MyLink to="/all-movies">
+              <BiMoviePlay className="text-xl" />
+              All Movies
+            </MyLink>
           </li>
           <li>
-            <MyLink to="/add-movies">Add Movies</MyLink>
+            <MyLink to="/add-movies">
+              <AiOutlineVideoCameraAdd className="text-xl" />
+              Add Movies
+            </MyLink>
           </li>
         </ul>
       </div>
@@ -107,9 +128,7 @@ const Navbar = () => {
                   <h1 className="text-primary font-semibold text-xl truncate">
                     {user.displayName}
                   </h1>
-                  <h1 className="text-sm truncate">
-                    {user.email}
-                  </h1>
+                  <h1 className="text-sm truncate">{user.email}</h1>
                 </div>
 
                 <div className="flex justify-between items-center p-3 bg-base-300 rounded-xl">
