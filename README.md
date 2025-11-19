@@ -74,7 +74,7 @@ npm run dev
 
 ## 🔗 Live & Relevant Links
 - **Live App (Client):** [https://movie-master-pro-milon.netlify.app/](https://movie-master-pro-milon.netlify.app/)  
-- **GitHub Repository (Client + Server):** [https://github.com/hafijurrahmanMILON/MovieMaster-Pro](https://github.com/hafijurrahmanMILON/MovieMaster-Pro)  
+- **GitHub Repository (Client):** [https://github.com/hafijurrahmanMILON/MovieMaster-CLIENT](https://github.com/hafijurrahmanMILON/MovieMaster-CLIENT)  
 
 ---
 
