@@ -50,7 +50,7 @@ It provides advanced filtering, personalized watchlists, and a smooth, responsiv
 
 1. **Clone the repository**  
 ```bash
-git clone https://github.com/hafijurrahmanMILON/MovieMaster-Pro.git
+git clone https://github.com/hafijurrahmanMILON/MovieMaster-CLIENT.git
 ```
 
 2. **Navigate to the project folder**  
